@@ -13,14 +13,13 @@ object Version {
   val junit = "4.10"
   val mockito = "1.9.5"
   val scalaTest = "2.2.1"
-  val gmFabricCore = "0.2.0-SNAPSHOT"
+  val gmFabricCore = "0.1.0"
   val guice = "4.0"
 }
 
 object Library {
 
   val twit = "com.twitter"
-
   val scrooge = twit %% "scrooge-core" % Version.scrooge
   val finagleCore = twit %% "finagle-core" % Version.finagle
   val utilCore = twit %% "util-core" % Version.twitterUtil
@@ -28,16 +27,16 @@ object Library {
   val finagleStats = twit %% "finagle-stats" % Version.finagle
   val serverSets = twit %% "finagle-serversets" % Version.finagle % "runtime" exclude("org.slf4j", "slf4j-jdk14") exclude("org.slf4j", "slf4j-log4j12")
   val log4j = "log4j" %% "log4j" % Version.log4j
-  val slf4jApi = "org.slf4j" %% "slf4j-api" % Version.slf4j
-  val junit = "junit" %% "junit" % Version.junit % "test"
+  val slf4jApi = "org.slf4j" % "slf4j-api" % Version.slf4j
+  val junit = "junit" % "junit" % Version.junit % "test"
   val finatra = twit %% "finatra" % Version.finatra
   val twitterServer = twit %% "twitter-server" % Version.twitterServer
-  val gmFabricCore = "com.deciphernow" %% "gm-fabric-core" % Version.gmFabricCore
-  val mockito = "org.mockito" %% "mockito-core" % Version.mockito % "test"
-  val logbackCore = "ch.qos.logback" %% "logback-core" % Version.logBack
-  val logbackClassic = "ch.qos.logback" %% "logback-classic" % Version.logBack
+  val gmFabricCore = "com.deciphernow" % "gm-fabric-core" % Version.gmFabricCore
+  val mockito = "org.mockito" % "mockito-core" % Version.mockito % "test"
+  val logbackCore = "ch.qos.logback" % "logback-core" % Version.logBack
+  val logbackClassic = "ch.qos.logback" % "logback-classic" % Version.logBack
   val finatraHttp = twit %% "finatra-http" % Version.finatra exclude("com.twitter", "twitter-server")
-  val guiceTestLib = "com.google.inject.extensions" %% "guice-testlib" % Version.guice
+  val guiceTestLib = "com.google.inject.extensions" % "guice-testlib" % Version.guice
   val injectCore = twit %% "inject-core" % Version.finatra
   val injectModules = twit %% "inject-modules" % Version.finatra
   val injectApp = twit %% "inject-app" % Version.finatra
@@ -57,7 +56,8 @@ object Dependencies {
     scrooge,
     finagleThrift,
     utilCore,
-    finagleCore
+    injectCore,
+    injectApp
   )
 
   val server = List(

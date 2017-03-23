@@ -8,7 +8,11 @@ lazy val root = (project in file(".")).
       val _ = (g8Test in Test).toTask("").value
     },
     scriptedLaunchOpts ++= List("-Xms1024m", "-Xmx1024m", "-XX:ReservedCodeCacheSize=128m", "-XX:MaxPermSize=256m", "-Xss2m", "-Dfile.encoding=UTF-8"),
-    resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),
+    resolvers ++= Seq(
+      Resolver.url("Typesafe Repo", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),
+      Resolver.typesafeRepo("releases"),
+      Resolver.mavenLocal
+    ),
     developers := List(
       Developer("michael.long", "Michael Long", "", url("http://github.com/mikejlong60")),
       Developer("jeffusan", "Jeff Hemminger", "@jhemminger", url("https://github.com/jeffusan"))
