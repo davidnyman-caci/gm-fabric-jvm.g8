@@ -12,7 +12,7 @@ object Version {
   val log4j = "1.2.15"
   val junit = "4.10"
   val mockito = "1.9.5"
-  val scalaTest = "2.2.1"
+  val scalaTest = "3.0.1"
   val gmFabricCore = "0.1.0"
   val guice = "4.0"
 }
@@ -54,10 +54,10 @@ object Dependencies {
 
   val model = List(
     scrooge,
-    finagleThrift,
+    finagleThrift
 //    utilCore,
-    injectCore,
-    injectApp
+//    injectCore,
+//    injectApp
   )
 
   val server = List(
