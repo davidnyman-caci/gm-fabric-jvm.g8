@@ -12,9 +12,5 @@ lazy val root = (project in file(".")).
       Resolver.url("Typesafe Repo", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns),
       Resolver.typesafeRepo("releases"),
       Resolver.mavenLocal
-    ),
-    developers := List(
-      Developer("michael.long", "Michael Long", "", url("http://github.com/mikejlong60")),
-      Developer("jeffusan", "Jeff Hemminger", "@jhemminger", url("https://github.com/jeffusan"))
     )
   )
