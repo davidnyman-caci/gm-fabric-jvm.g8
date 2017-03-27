@@ -55,7 +55,7 @@ object Dependencies {
   val model = List(
     scrooge,
     finagleThrift,
-    utilCore,
+//    utilCore,
     injectCore,
     injectApp
   )

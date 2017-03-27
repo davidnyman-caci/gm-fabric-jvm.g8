@@ -21,9 +21,9 @@ resolvers in ThisBuild ++= Seq(
 lazy val business = project
 
 lazy val model = project.settings(
-  libraryDependencies ++= Dependencies.model,
-  scroogeThriftSourceFolder in Compile := baseDirectory { base => base / "src/main/thrift" }.value,
-  scroogeThriftDependencies in Compile := Seq("finatra-thrift_2.11")
+  libraryDependencies ++= Dependencies.model
+//  scroogeThriftSourceFolder in Compile := baseDirectory { base => base / "src/main/thrift" }.value,
+//  scroogeThriftDependencies in Compile := Seq("finatra-thrift_2.11")
 )
 
 lazy val client = project
