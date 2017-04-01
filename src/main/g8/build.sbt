@@ -2,7 +2,7 @@
 
 lazy val commonSettings = Seq(
   organization := "$organization$",
-  scalaVersion := "$scalaVersion$",
+  scalaVersion in ThisBuild := "$scalaVersion$",
   name := "$name$",
   resolvers ++= Seq(
     "Sonatype" at "http://repository.sonatype.org/",
@@ -10,24 +10,8 @@ lazy val commonSettings = Seq(
     "Maven Central" at "http://central.maven.org/maven2/",
     "Twitter Maven" at "http://maven.twttr.com",
     Resolver.mavenLocal
-  ),
-  mainClass in Compile := Some("$package$.$appName$"),
-  assemblyMergeStrategy in assembly := {
-    case "BUILD" => MergeStrategy.discard
-    case PathList("org", "apache", "log4j", xs @ _*) => MergeStrategy.last
-    case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
-    case PathList("scala", "tools", "nsc", xs @ _*) => MergeStrategy.last
-    case other => MergeStrategy.defaultMergeStrategy(other)
-  }
+  )
 )
-
-lazy val root = (project in file(".")).
-  enablePlugins(JavaServerAppPackaging).
-  settings(
-    commonSettings,
-    mainClass in assembly := Some("$package$.$appName$")
-  ).
-  aggregate(model, business, client, server)
 
 lazy val business = project.
   settings(
@@ -42,18 +26,20 @@ lazy val model = project.
     name := "$name$-model"
   )
 
-lazy val client = project
-  .dependsOn(model)
-  .settings(
+lazy val client = project.
+  dependsOn(model).
+  settings(
     commonSettings,
     libraryDependencies ++= Dependencies.client,
     name := "$name$-client"
   )
 
-lazy val server = project
-  .dependsOn(model, business)
-  .settings(
+lazy val server = project.
+  enablePlugins(JavaAppPackaging).
+  dependsOn(client, business).
+  settings(
     commonSettings,
     libraryDependencies ++= Dependencies.server,
+    mainClass in Compile := Some("$package$.$appName$"),
     name := "$name$-server"
   )
