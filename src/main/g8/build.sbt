@@ -35,7 +35,7 @@ lazy val client = project.
   )
 
 lazy val server = project.
-  enablePlugins(JavaAppPackaging, RpmPlugin).
+  enablePlugins(JavaAppPackaging, RpmPlugin, DebianPlugin).
   dependsOn(client, business).
   settings(
     commonSettings,
