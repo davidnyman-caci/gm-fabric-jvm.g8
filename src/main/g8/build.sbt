@@ -35,11 +35,14 @@ lazy val client = project.
   )
 
 lazy val server = project.
-  enablePlugins(JavaAppPackaging).
+  enablePlugins(JavaAppPackaging, RpmPlugin).
   dependsOn(client, business).
   settings(
     commonSettings,
     libraryDependencies ++= Dependencies.server,
     mainClass in Compile := Some("$package$.$appName$"),
-    name := "$name$-server"
+    name := "$name$-server",
+    rpmVendor := "$rpmVendor$",
+    name in Rpm := "$rpmName$",
+    version in Rpm := "$rpmVersion$"
   )
