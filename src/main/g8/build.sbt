@@ -10,12 +10,23 @@ lazy val commonSettings = Seq(
     "Maven Central" at "http://central.maven.org/maven2/",
     "Twitter Maven" at "http://maven.twttr.com",
     Resolver.mavenLocal
-  )
+  ),
+  mainClass in Compile := Some("$package$.$appName$"),
+  assemblyMergeStrategy in assembly := {
+    case "BUILD" => MergeStrategy.discard
+    case PathList("org", "apache", "log4j", xs @ _*) => MergeStrategy.last
+    case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
+    case PathList("scala", "tools", "nsc", xs @ _*) => MergeStrategy.last
+    case other => MergeStrategy.defaultMergeStrategy(other)
+  }
 )
 
 lazy val root = (project in file(".")).
-  enablePlugins(RpmPlugin).
-  settings(commonSettings).
+  enablePlugins(JavaServerAppPackaging).
+  settings(
+    commonSettings,
+    mainClass in assembly := Some("$package$.$appName$")
+  ).
   aggregate(model, business, client, server)
 
 lazy val business = project.
