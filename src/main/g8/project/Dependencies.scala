@@ -54,10 +54,10 @@ object Dependencies {
 
   val model = List(
     scrooge,
-    finagleThrift
-//    utilCore,
-//    injectCore,
-//    injectApp
+    finagleThrift,
+    utilCore,
+    injectCore,
+    injectApp
   )
 
   val server = List(
