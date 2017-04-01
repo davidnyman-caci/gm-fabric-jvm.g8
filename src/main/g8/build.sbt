@@ -16,26 +16,33 @@ lazy val commonSettings = Seq(
 lazy val root = (project in file(".")).
   enablePlugins(RpmPlugin).
   settings(commonSettings).
-  aggregate(model, business)
+  aggregate(model, business, client, server)
 
-lazy val business = project
+lazy val business = project.
+  settings(
+    commonSettings,
+    name := "$name$-business"
+  )
 
 lazy val model = project.
   settings(
     commonSettings,
-    libraryDependencies ++= Dependencies.model
+    libraryDependencies ++= Dependencies.model,
+    name := "$name$-model"
   )
 
 lazy val client = project
   .dependsOn(model)
   .settings(
     commonSettings,
-    libraryDependencies ++= Dependencies.client
+    libraryDependencies ++= Dependencies.client,
+    name := "$name$-client"
   )
 
 lazy val server = project
   .dependsOn(model, business)
   .settings(
     commonSettings,
-    libraryDependencies ++= Dependencies.server
+    libraryDependencies ++= Dependencies.server,
+    name := "$name$-server"
   )

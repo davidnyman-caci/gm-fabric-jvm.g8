@@ -1,4 +1,4 @@
- resolvers ++= Seq(
+resolvers ++= Seq(
   Resolver.bintrayIvyRepo("lembrd", "sbt-plugins"),
   Resolver.bintrayRepo("twittercsl", "sbt-plugins")
 )
